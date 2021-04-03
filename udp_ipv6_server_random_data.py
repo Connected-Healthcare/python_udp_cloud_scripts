@@ -1,6 +1,5 @@
 import socket
 import string
-import serial
 import time
 import random
 import datetime
@@ -44,7 +43,7 @@ while True:
 
     time_of_flight = random.randint(10, 1000)
 
-    heartRate = random.randint(10, 120)
+    heartRate = random.randint(30, 120)
     oxygen = random.randint(10, 100)
 
     spec_co_rel_humidity = random.randint(10, 100)
