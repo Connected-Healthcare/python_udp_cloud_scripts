@@ -64,13 +64,15 @@ while True:
     spec_data = str(spec_co_gas_conc) + "," + str(spec_co_temp)
     gps_data = latitude_str + "," + longitude_str
 
+    firebase_url = "https://connected-healthcare.firebaseio.com/" + "RLOC" + rloc_data.upper()
+
     print ("EpochTime: {0}".format(str(epoch_time)))
     print ("Timestamp: {0}".format(str(timestamp)))
     print ("RLOC16: {0}\nHTS221: {1}\nLPS22HB: {2}\nMagnetometer: {3}\nAccelerometer: {4}\nGyroscope: {5}\nTime_Of_Flight: {6}\nHeartbeat: {7}\nSpec_CO: {8}\nGPS: {9}".format(rloc_data, hts221_data, lps22hb_data, magnetometer_data, accelerometer_data, gyroscope_data, tof_data, heartbeat_data, spec_data, gps_data))
 
     print ("\n---------------\n")
 
-    result = firebase.post('https://connected-healthcare.firebaseio.com', {'Timestamp':str(timestamp),'EpochTime':str(epoch_time),'1_RLOC16':rloc_data,'HTS221':hts221_data,'LPS22HB':lps22hb_data,'Magnetometer':magnetometer_data,'Accelerometer':accelerometer_data,'Gyroscope':gyroscope_data,'Time_Of_Flight':tof_data,'Heartbeat':heartbeat_data,'Spec_CO':spec_data,'GPS':gps_data})
+    result = firebase.post(firebase_url, {'Timestamp':str(timestamp),'EpochTime':str(epoch_time),'1_RLOC16':rloc_data,'HTS221':hts221_data,'LPS22HB':lps22hb_data,'Magnetometer':magnetometer_data,'Accelerometer':accelerometer_data,'Gyroscope':gyroscope_data,'Time_Of_Flight':tof_data,'Heartbeat':heartbeat_data,'Spec_CO':spec_data,'GPS':gps_data})
 
     time.sleep (2)
 
