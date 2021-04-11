@@ -15,7 +15,8 @@ UDP_PORT = 1234
 
 sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
 sock.bind((UDP_IP, UDP_PORT))
-firebase= firebase.FirebaseApplication('https://connected-healthcare.firebaseio.com/', None)
+firebase_url = 'https://connected-healthcare.firebaseio.com/'
+firebase = firebase.FirebaseApplication(firebase_url, None)
 
 while True:
     timestamp = datetime.datetime.now()
@@ -64,7 +65,7 @@ while True:
     spec_data = str(spec_co_gas_conc) + "," + str(spec_co_temp)
     gps_data = latitude_str + "," + longitude_str
 
-    firebase_url = "https://connected-healthcare.firebaseio.com/" + "RLOC" + rloc_data.upper()
+    firebase_url_final = firebase_url + "RLOC" + rloc_data.upper()
 
     print ("EpochTime: {0}".format(str(epoch_time)))
     print ("Timestamp: {0}".format(str(timestamp)))
@@ -72,7 +73,7 @@ while True:
 
     print ("\n---------------\n")
 
-    result = firebase.post(firebase_url, {'Timestamp':str(timestamp),'EpochTime':str(epoch_time),'1_RLOC16':rloc_data,'HTS221':hts221_data,'LPS22HB':lps22hb_data,'Magnetometer':magnetometer_data,'Accelerometer':accelerometer_data,'Gyroscope':gyroscope_data,'Time_Of_Flight':tof_data,'Heartbeat':heartbeat_data,'Spec_CO':spec_data,'GPS':gps_data})
+    result = firebase.post(firebase_url_final, {'Timestamp':str(timestamp),'EpochTime':str(epoch_time),'1_RLOC16':rloc_data,'HTS221':hts221_data,'LPS22HB':lps22hb_data,'Magnetometer':magnetometer_data,'Accelerometer':accelerometer_data,'Gyroscope':gyroscope_data,'Time_Of_Flight':tof_data,'Heartbeat':heartbeat_data,'Spec_CO':spec_data,'GPS':gps_data})
 
     time.sleep (2)
 
