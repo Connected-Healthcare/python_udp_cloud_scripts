@@ -7,3 +7,7 @@ Includes python script that runs on Rapsberry Pi 3B OpenThread Border Router. It
 
 # Note:
 To randomly simulate sensor data (GPS, CO, HB, and ST B-L475E-IOT01A internal sensors) and send to Firebase cloud instance, run python3 udp_ipv6_server_random_data.py
+
+# Installation
+
+- [Stackoverflow](https://stackoverflow.com/questions/52133031/receiving-async-error-when-trying-to-import-the-firebase-package)
